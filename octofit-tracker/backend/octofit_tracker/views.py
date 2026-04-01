@@ -24,16 +24,6 @@ class LeaderboardEntryViewSet(viewsets.ModelViewSet):
     queryset = LeaderboardEntry.objects.all()
     serializer_class = LeaderboardEntrySerializer
 
-@api_view(['GET'])
-def api_root(request, format=None):
-    return Response({
-        'users': '/api/users/',
-        'teams': '/api/teams/',
-        'activities': '/api/activities/',
-        'workouts': '/api/workouts/',
-        'leaderboard': '/api/leaderboard/',
-    })
-
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'teams', TeamViewSet)

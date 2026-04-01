@@ -25,9 +25,11 @@ SECRET_KEY = 'django-insecure-_kfp!w$6qxz@g2ljmyxtwjq1!@li2c13=%w!jdqw8%%8ogi==f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-
-# Allow all hosts for development
-ALLOWED_HOSTS = ['*']
+import os
+codespace_name = os.environ.get('CODESPACE_NAME')
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+if codespace_name:
+    ALLOWED_HOSTS.append(f"{codespace_name}-8000.app.github.dev")
 
 
 # Application definition
@@ -139,6 +141,9 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = ['*']
 CORS_ALLOW_METHODS = ['*']
+
+# Custom user model (prevents clashes between auth.User and octofit_tracker.User)
+AUTH_USER_MODEL = 'octofit_tracker.User'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
