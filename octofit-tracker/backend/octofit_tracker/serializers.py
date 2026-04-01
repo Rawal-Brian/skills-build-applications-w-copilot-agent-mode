@@ -16,10 +16,9 @@ class UserSerializer(serializers.ModelSerializer):
 
 class TeamSerializer(serializers.ModelSerializer):
     id = ObjectIdField(source='_id', read_only=True)
-    members = UserSerializer(many=True, read_only=True)
     class Meta:
         model = Team
-        fields = ['id', 'name', 'members', 'created_at']
+        fields = ['id', 'name', 'created_at']
 
 class ActivitySerializer(serializers.ModelSerializer):
     id = ObjectIdField(source='_id', read_only=True)
