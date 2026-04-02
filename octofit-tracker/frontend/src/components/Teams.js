@@ -83,7 +83,9 @@ export default function Teams() {
   const [error, setError] = useState(null);
   const [selected, setSelected] = useState(null);
 
-  const baseURL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+  const codespaceName = process.env.REACT_APP_CODESPACES_NAME;
+  const baseURL = codespaceName ? `https://${codespaceName}-8000.app.github.dev` : (process.env.REACT_APP_API_URL || 'http://localhost:8000');
+  // Codespace API URL: https://codespace-8000.app.github.dev/api/teams/
   const endpoint = `${baseURL}/api/${component}/`;
 
   async function fetchData() {
